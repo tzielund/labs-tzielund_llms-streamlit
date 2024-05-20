@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "labs-tzielund-llms-streamlit"
+version = "0.1.0"
+description = ""
+authors = ["TomZielundTR <tom.zielund@thomsonreuters.com>"]
+readme = "README.md"
+packages = [{include = "labs_tzielund_llms_streamlit"}]
+
+[tool.poetry.dependencies]
+python = "!=3.9.7,>=3.8"
+streamlit = "^1.34.0"
+nltk = "^3.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

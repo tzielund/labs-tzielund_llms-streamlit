@@ -1,0 +1,4 @@
+# Ignore the gutenberg cache directory and the model_cache directory
+
+gutenberg/
+model_cache/
