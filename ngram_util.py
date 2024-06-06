@@ -101,6 +101,9 @@ class WordNgramModel:
         print(f"Predicting next word for {contextKey}")
         matching_ngrams = self.find_ngrams_matching_context(contextKey)
         print("Matching ngrams:", len(matching_ngrams))
+        while not matching_ngrams and len(contextKey):
+            contextKey = contextKey[:-1]
+            matching_ngrams = self.find_ngrams_matching_context(contextKey)
         if not matching_ngrams:
             raise Exception(f"No matching ngrams for {contextKey}")
             # matching_ngrams = self.ngram_dict

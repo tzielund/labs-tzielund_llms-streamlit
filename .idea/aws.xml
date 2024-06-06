@@ -8,4 +8,7 @@
       </list>
     </option>
   </component>
+  <component name="connectionManager">
+    <option name="activeConnectionId" value="sso-session:d-90676ddaa9" />
+  </component>
 </project>
