@@ -9,8 +9,15 @@ GUTENBERG_CACHE_DIR = "gutenberg"
 START_TOKEN = "START_TOKEN"
 END_TOKEN = "END_TOKEN"
 
+def get_book_list():
+    # Get a list of books available in the cache
+    list = os.listdir(GUTENBERG_CACHE_DIR)
+    # Eliminate any that don't end with .txt
+    list = [b for b in list if b.endswith(".txt")]
+    return list
+
 def get_book_selector():
-    book_list = os.listdir(GUTENBERG_CACHE_DIR)
+    book_list = get_book_list()
     # Eliminate any that don't end with .txt
     book_list = [b for b in book_list if b.endswith(".txt")]
     return streamlit.selectbox("Select a book", book_list)
@@ -59,7 +66,7 @@ def get_book_text(filename):
         data = data.replace("\r\n", "\n")
     return data
 
-def get_book_paragraphs(filename):
+def get_book_paragraphs(filename, include_start_end_tokens=True):
     text = get_book_text(filename)
 
     paragraphs = text.split("\n\n")
@@ -97,8 +104,9 @@ def get_book_paragraphs(filename):
     # Get rid of very short paragraphs
     paragraphs = [p for p in paragraphs if len(p) > 32]
     print("Long Paragraphs:", len(paragraphs))
-    # Prefix every paragraph with a START and END token
-    paragraphs = [f"{START_TOKEN} {p} {END_TOKEN}" for p in paragraphs]
+    if include_start_end_tokens:
+        # Prefix every paragraph with a START and END token
+        paragraphs = [f"{START_TOKEN} {p} {END_TOKEN}" for p in paragraphs]
     return paragraphs
 
 

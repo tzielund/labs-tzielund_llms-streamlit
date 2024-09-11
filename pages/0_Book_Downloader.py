@@ -21,6 +21,14 @@ if not do_id:
     streamlit.markdown("2701: Moby Dick by Herman Melville")
     streamlit.markdown("25717: The Decline and Fall of the Roman Empire by Edward Gibbon")
 
+    # List books already downloaded
+    book_list = gutenberg_util.get_book_list()
+    if book_list:
+        streamlit.write("Books already downloaded:")
+        streamlit.json(book_list)
+    else:
+        streamlit.write("Nothing downloaded yet")
+
     streamlit.stop()
 downloaded_text = gutenberg_util.download_book(book_id)
 if downloaded_text:
